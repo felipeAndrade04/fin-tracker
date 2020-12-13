@@ -1,34 +1,43 @@
-import React, { useState, useCallback } from 'react';
+import React, {useState, useCallback} from 'react';
+
+import {useNavigation} from '@react-navigation/native';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, Card, Title } from './styles';
+import {Container, Card, Title, Register, RegisterText} from './styles';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<String>();
   const [password, setPassword] = useState<String>();
 
-  const showSignIn = useCallback(() => {
-    console.log(email, password);
-  }, [email, password]);
+  const {navigate} = useNavigation();
+
+  const navigateToDashboard = useCallback(() => {
+    navigate('Dashboard');
+  }, [navigate]);
+
+  const navigateToSignUp = useCallback(() => {
+    navigate('SignUp');
+  }, [navigate]);
 
   return (
     <Container>
       <Card>
-        <Title>
-          Faça seu Login
-        </Title>
+        <Title>Faça seu Login</Title>
 
-        <Input
-          placeholder="E-mail"
-          onChangeText={email => setEmail(email)} />
+        <Input placeholder="E-mail" onChangeText={(value) => setEmail(value)} />
         <Input
           secureTextEntry
           placeholder="Senha"
-          onChangeText={password => setPassword(password)} />
+          onChangeText={(value) => setPassword(value)}
+        />
 
-        <Button onPress={showSignIn}>Entrar</Button>
+        <Button onPress={navigateToDashboard}>Entrar</Button>
+
+        <Register onPress={navigateToSignUp}>
+          <RegisterText>Registre-se</RegisterText>
+        </Register>
       </Card>
     </Container>
   );

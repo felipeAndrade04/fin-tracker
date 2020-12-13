@@ -35,11 +35,13 @@ export const LogOut = styled.View`
 `;
 
 export const InvoicesList = styled(FlatList as new () => FlatList<InvoiceData>)`
-  padding: 20px 0;
+  width: 105%;
+  margin-left: -2.5%;
+  padding: 10px 0;
 `;
 
 export const InvoiceContainer = styled.View`
-  height: 100px;
+  height: 120px;
   background: #fff;
   border-radius: 8px;
   flex-direction: row;
@@ -47,8 +49,8 @@ export const InvoiceContainer = styled.View`
 `;
 
 export const InvoiceImage = styled.Image`
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   margin-left: 0;
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
@@ -95,5 +97,4 @@ export const ButtonAddInvoice = styled.TouchableOpacity`
 export const Icon = styled.Text`
   font-size: 60px;
   color: #fff;
-  margin-bottom: 0px;
 `;

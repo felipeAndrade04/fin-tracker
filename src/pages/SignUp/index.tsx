@@ -15,7 +15,7 @@ const SignIn: React.FC = () => {
   const {navigate, goBack} = useNavigation();
 
   const navigateToDashboard = useCallback(() => {
-    navigate('Dashboard');
+    navigate('SignIn');
   }, [navigate]);
 
   const navigateToSignIn = useCallback(() => {
