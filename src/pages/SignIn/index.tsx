@@ -5,7 +5,16 @@ import {useNavigation} from '@react-navigation/native';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import {Container, Card, Title, Register, RegisterText} from './styles';
+import {
+  Container,
+  ContainerTitle,
+  Title,
+  Underline,
+  ForgotPassword,
+  ForgotPasswordText,
+  Register,
+  RegisterText,
+} from './styles';
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<String>();
@@ -23,22 +32,27 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Card>
-        <Title>Faça seu Login</Title>
+      <ContainerTitle>
+        <Title>Login</Title>
+        <Underline />
+      </ContainerTitle>
 
-        <Input placeholder="E-mail" onChangeText={(value) => setEmail(value)} />
-        <Input
-          secureTextEntry
-          placeholder="Senha"
-          onChangeText={(value) => setPassword(value)}
-        />
+      <Input placeholder="E-mail" onChangeText={(value) => setEmail(value)} />
+      <Input
+        secureTextEntry
+        placeholder="Senha"
+        onChangeText={(value) => setPassword(value)}
+      />
 
-        <Button onPress={navigateToDashboard}>Entrar</Button>
+      <ForgotPassword>
+        <ForgotPasswordText>Recuperar senha</ForgotPasswordText>
+      </ForgotPassword>
 
-        <Register onPress={navigateToSignUp}>
-          <RegisterText>Registre-se</RegisterText>
-        </Register>
-      </Card>
+      <Button onPress={navigateToDashboard}>Entrar</Button>
+
+      <Register onPress={navigateToSignUp}>
+        <RegisterText>Novo por aqui? Registre-se</RegisterText>
+      </Register>
     </Container>
   );
 };
