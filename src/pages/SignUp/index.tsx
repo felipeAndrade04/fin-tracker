@@ -1,11 +1,19 @@
 import React, {useState, useCallback} from 'react';
+import Icon from 'react-native-vector-icons/Feather';
 
 import {useNavigation} from '@react-navigation/native';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import {Container, Card, Title, GoBack, GoBackText} from './styles';
+import {
+  Container,
+  ContainerTitle,
+  Underline,
+  Title,
+  GoBack,
+  GoBackText,
+} from './styles';
 
 const SignIn: React.FC = () => {
   const [name, setName] = useState<String>();
@@ -24,23 +32,25 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Card>
-        <Title>Faça seu Cadastro</Title>
+      <ContainerTitle>
+        <Title>Sign Up</Title>
+        <Underline />
+      </ContainerTitle>
 
-        <Input placeholder="Nome" onChangeText={(value) => setName(value)} />
-        <Input placeholder="E-mail" onChangeText={(value) => setEmail(value)} />
-        <Input
-          secureTextEntry
-          placeholder="Senha"
-          onChangeText={(value) => setPassword(value)}
-        />
+      <Input placeholder="Nome" onChangeText={(value) => setName(value)} />
+      <Input placeholder="E-mail" onChangeText={(value) => setEmail(value)} />
+      <Input
+        secureTextEntry
+        placeholder="Senha"
+        onChangeText={(value) => setPassword(value)}
+      />
 
-        <Button onPress={navigateToDashboard}>Cadastrar</Button>
+      <Button onPress={navigateToDashboard}>Cadastrar</Button>
 
-        <GoBack onPress={navigateToSignIn}>
-          <GoBackText>Voltar para Login</GoBackText>
-        </GoBack>
-      </Card>
+      <GoBack onPress={navigateToSignIn}>
+        <Icon name="arrow-left" size={14} color="#46494c" />
+        <GoBackText>Voltar para Login</GoBackText>
+      </GoBack>
     </Container>
   );
 };
