@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  width: 90%;
-  height: 60px;
+  width: 100%;
+  height: 50px;
   border-radius: 8px;
-  background: #232129;
-  margin-top: 20px;
+  background: #529471;
+  margin: 30px auto 0;
 
   align-items: center;
   justify-content: center;
