@@ -5,33 +5,72 @@ import {InvoiceData} from '.';
 
 export const Container = styled.View`
   flex: 1;
-  background: #e6e5ec;
+  background: #dcdcdd;
   position: relative;
 `;
 
 export const Header = styled.View`
   width: 100%;
-  height: 80px;
-  background: #232129;
-  padding: 10px 20px;
+  height: 200px;
+  background: #529471;
+  padding: 10px 20px 0 20px;
+`;
 
+export const HeaderAlignTopContent = styled.View`
+  margin-top: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
 
 export const UserName = styled.Text`
-  color: #fff;
-  font-size: 25px;
+  color: #46494c;
+  font-size: 20px;
   flex: 1;
-  margin-right: 10px;
 `;
 
-export const LogOut = styled.View`
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
+export const ButtonSignout = styled.TouchableOpacity``;
+
+export const HeaderListingText = styled.Text`
+  position: absolute;
+  bottom: 65px;
+  left: 20px;
+  color: #46494c;
+  font-size: 45px;
+  font-weight: bold;
+`;
+
+export const SearchContainer = styled.View`
+  flex-direction: row;
+`;
+
+export const SearchByDate = styled.TouchableOpacity`
+  height: 60px;
+  width: 60px;
+  margin: -30px 0 0 20px;
   background: #fff;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SearchByCompanyContainer = styled.View`
+  flex: 1;
+  height: 60px;
+  padding: 0 10px;
+  margin: -30px 20px 10px 20px;
+  background: #fff;
+  border-radius: 8px;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const InputSearchByCompany = styled.TextInput`
+  flex: 1;
+  font-size: 18px;
+  color: #bebccc;
 `;
 
 export const InvoicesList = styled(FlatList as new () => FlatList<InvoiceData>)`
@@ -59,42 +98,41 @@ export const InvoiceImage = styled.Image`
 export const InvoiceInfo = styled.View`
   position: relative;
   flex: 1;
-  margin: 5px 10px;
+  margin: 8px 10px;
 `;
 
 export const InvoiceCompany = styled.Text`
   font-size: 18px;
-  font-weight: bold;
+  color: #46494c;
 `;
 
 export const InvoiceDateText = styled.Text`
-  color: #232129;
-`;
-
-export const InvoiceValue = styled.View`
+  color: #46494c;
   position: absolute;
-  right: 0;
   bottom: 0;
 `;
+
 export const InvoiceValueText = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: bold;
   color: #c72828;
+  margin-top: 5px;
+`;
+
+export const IconContainer = styled.View`
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ButtonAddInvoice = styled.TouchableOpacity`
   position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  background: #232129;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background: #529471;
   align-items: center;
   justify-content: center;
   right: 0;
   bottom: 0;
   margin: 20px;
-`;
-
-export const Icon = styled.Text`
-  font-size: 60px;
-  color: #fff;
 `;
