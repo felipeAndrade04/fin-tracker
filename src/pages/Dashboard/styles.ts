@@ -136,3 +136,82 @@ export const ButtonAddInvoice = styled.TouchableOpacity`
   bottom: 0;
   margin: 20px;
 `;
+
+export const HeaderModal = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ModalRegisterInvoice = styled.Modal``;
+
+export const ViewBlurBackground = styled.View`
+  background: #000;
+  flex: 1;
+  opacity: 0.7;
+`;
+
+export const ModalContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 480px;
+  padding: 40px;
+  background: #fff;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  justify-content: center;
+`;
+
+export const ModalTitle = styled.Text`
+  font-size: 28px;
+  color: #46494c;
+  margin-bottom: 30px;
+`;
+
+export const ButtonClosedModal = styled.TouchableOpacity``;
+
+export const ContainerButtons = styled.View`
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto 20px;
+`;
+
+export const OpenDatePickerButton = styled.TouchableOpacity`
+  flex: 1;
+  padding: 10px;
+  height: 60px;
+  border-radius: 8px;
+  border-width: 1px;
+  background: #fff;
+  margin-right: 20px;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const OpenDatePickerButtonText = styled.Text`
+  margin-left: 8px;
+  font-size: 16px;
+  color: #46494c;
+`;
+
+export const PhotoInvoiceButton = styled.TouchableOpacity`
+  flex: 1;
+  padding: 10px;
+  height: 60px;
+  background: #fff;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: #46494c;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PhotoInvoiceText = styled.Text`
+  margin-left: 8px;
+  font-size: 16px;
+  color: #46494c;
+`;

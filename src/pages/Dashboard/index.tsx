@@ -1,4 +1,7 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
+import {Alert, Platform} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import ImagePicker from 'react-native-image-picker';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import {
@@ -21,7 +24,21 @@ import {
   InvoiceValueText,
   IconContainer,
   ButtonAddInvoice,
+  ModalRegisterInvoice,
+  ViewBlurBackground,
+  ModalContainer,
+  HeaderModal,
+  ModalTitle,
+  ButtonClosedModal,
+  ContainerButtons,
+  OpenDatePickerButton,
+  OpenDatePickerButtonText,
+  PhotoInvoiceButton,
+  PhotoInvoiceText,
 } from './styles';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 export interface InvoiceData {
   id: string;
@@ -101,9 +118,58 @@ const Dashboard: React.FC = () => {
     },
   ];
 
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [company, setCompany] = useState<String>();
+  const [price, setPrice] = useState<String>();
+  const [date, setDate] = useState<String>();
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const navigateToRegisterInvoice = useCallback(() => {
     navigate('RegisterInvoice');
   }, [navigate]);
+
+  const HandleToggleDatePicker = useCallback(() => {
+    setShowDatePicker((state) => !state);
+  }, []);
+
+  const handleDateChanged = useCallback(
+    (event: any, date: Date | undefined) => {
+      if (Platform.OS === 'android') {
+        setShowDatePicker(false);
+      }
+
+      if (date) {
+        setSelectedDate(date);
+      }
+
+      console.log(selectedDate);
+    },
+    [],
+  );
+
+  const handlePhotoInvoice = useCallback(() => {
+    ImagePicker.showImagePicker(
+      {
+        title: 'Selecione sua nota',
+        cancelButtonTitle: 'Cancelar',
+        takePhotoButtonTitle: 'Usar câmera',
+        chooseFromLibraryButtonTitle: 'Escolher da galeria',
+      },
+      (response) => {
+        if (response.didCancel) {
+          return;
+        }
+        if (response.error) {
+          Alert.alert('Erro ao adicionar imagem da nota fiscal');
+          return;
+        }
+        const source = {uri: response.uri};
+        console.log(source);
+      },
+    );
+  }, []);
 
   return (
     <Container>
@@ -138,14 +204,64 @@ const Dashboard: React.FC = () => {
               <InvoiceDateText>{invoice.date}</InvoiceDateText>
             </InvoiceInfo>
             <IconContainer>
-              <Icon name="chevron-right" size={30} color="#232129" />
+              <Icon name="chevron-right" size={30} color="#46494c" />
             </IconContainer>
           </InvoiceContainer>
         )}
       />
-      <ButtonAddInvoice onPress={navigateToRegisterInvoice}>
-        <Icon name="plus" size={30} color="#fff" />
+      <ButtonAddInvoice onPress={() => setModalVisible(!modalVisible)}>
+        <Icon name="plus" size={35} color="#46494c" />
       </ButtonAddInvoice>
+      <ModalRegisterInvoice
+        animationType="slide"
+        transparent
+        visible={modalVisible}>
+        <ViewBlurBackground />
+        <ModalContainer>
+          <HeaderModal>
+            <ModalTitle>Cadastrar nota</ModalTitle>
+            <ButtonClosedModal onPress={() => setModalVisible(!modalVisible)}>
+              <Icon name="x" size={40} color="#46494c" />
+            </ButtonClosedModal>
+          </HeaderModal>
+
+          <Input
+            placeholder="Empresa"
+            onChangeText={(value) => setCompany(value)}
+          />
+
+          <Input
+            placeholder="Valor"
+            onChangeText={(value) => setPrice(value)}
+          />
+
+          <ContainerButtons>
+            <OpenDatePickerButton onPress={HandleToggleDatePicker}>
+              <Icon name="calendar" size={25} color="#46494c" />
+              <OpenDatePickerButtonText>
+                Selecionar Data
+              </OpenDatePickerButtonText>
+            </OpenDatePickerButton>
+
+            <PhotoInvoiceButton onPress={handlePhotoInvoice}>
+              <Icon name="camera" size={25} color="#46494c" />
+              <PhotoInvoiceText>Add imagem</PhotoInvoiceText>
+            </PhotoInvoiceButton>
+          </ContainerButtons>
+
+          {showDatePicker && (
+            <DateTimePicker
+              mode="date"
+              display="calendar"
+              onChange={handleDateChanged}
+              // textColor="#f4ede8"
+              value={selectedDate}
+            />
+          )}
+
+          <Button onPress={() => console.log('cadastrado')}>Cadastrar</Button>
+        </ModalContainer>
+      </ModalRegisterInvoice>
     </Container>
   );
 };
