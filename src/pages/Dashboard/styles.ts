@@ -79,12 +79,12 @@ export const InvoicesList = styled(FlatList as new () => FlatList<InvoiceData>)`
   padding: 10px 0;
 `;
 
-export const InvoiceContainer = styled.View`
+export const InvoiceContainer = styled.TouchableOpacity`
+  margin: 10px 30px;
   height: 120px;
   background: #fff;
   border-radius: 8px;
   flex-direction: row;
-  margin: 10px 30px;
 `;
 
 export const InvoiceImage = styled.Image`
@@ -98,7 +98,8 @@ export const InvoiceImage = styled.Image`
 export const InvoiceInfo = styled.View`
   position: relative;
   flex: 1;
-  margin: 8px 10px;
+  padding: 12px 0 12px 14px;
+  justify-content: space-between;
 `;
 
 export const InvoiceCompany = styled.Text`
@@ -107,16 +108,16 @@ export const InvoiceCompany = styled.Text`
 `;
 
 export const InvoiceDateText = styled.Text`
+  font-size: 13px;
+  font-weight: 100;
   color: #46494c;
-  position: absolute;
-  bottom: 0;
+  margin-top: -20px;
 `;
 
 export const InvoiceValueText = styled.Text`
   font-size: 22px;
   font-weight: bold;
   color: #c72828;
-  margin-top: 5px;
 `;
 
 export const IconContainer = styled.View`

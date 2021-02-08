@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Alert, Platform} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ImagePicker from 'react-native-image-picker';
@@ -39,95 +39,48 @@ import {
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import api from '../../services/api';
+import formatValue from '../../utils/formatValue';
 
 export interface InvoiceData {
-  id: string;
+  id: number;
   name: string;
-  uri: string;
-  value: string;
+  image_uri: string;
+  value: number;
   date: string;
 }
 
 const Dashboard: React.FC = () => {
   const {navigate} = useNavigation();
 
-  const invoices: InvoiceData[] = [
-    {
-      id: '1',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '2',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '3',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '4',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '5',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '6',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '7',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-    {
-      id: '8',
-      name: 'Super mercado econômico',
-      uri:
-        'https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1',
-      value: 'R$ 109,99',
-      date: '11/12/2020',
-    },
-  ];
+  const [invoices, setInvoices] = useState<InvoiceData[]>([]);
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [company, setCompany] = useState<String>();
   const [price, setPrice] = useState<String>();
   const [date, setDate] = useState<String>();
+  const [seachValue, setSearchValue] = useState('');
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const navigateToRegisterInvoice = useCallback(() => {
-    navigate('RegisterInvoice');
+  useEffect(() => {
+    async function loadInvoices(): Promise<void> {
+      const response = await api.get('/invoices');
+
+      // setInvoices(
+      //   response.data.map((invoice: InvoiceData) => ({
+      //     ...invoice,
+      //     formattedValue: formatValue(invoice.value),
+      //   })),
+      // );
+      setInvoices(response.data);
+    }
+    loadInvoices();
+  }, [seachValue]);
+
+  const navigateToDetailsInvoice = useCallback(() => {
+    navigate('DetailsInvoice');
   }, [navigate]);
 
   const HandleToggleDatePicker = useCallback(() => {
@@ -143,8 +96,6 @@ const Dashboard: React.FC = () => {
       if (date) {
         setSelectedDate(date);
       }
-
-      console.log(selectedDate);
     },
     [],
   );
@@ -194,14 +145,16 @@ const Dashboard: React.FC = () => {
 
       <InvoicesList
         data={invoices}
-        keyExtractor={(invoice) => invoice.id}
+        keyExtractor={(invoice) => String(invoice.id)}
         renderItem={({item: invoice}) => (
-          <InvoiceContainer>
-            <InvoiceImage source={{uri: invoice.uri}} />
+          <InvoiceContainer key={invoice.id} onPress={navigateToDetailsInvoice}>
+            <InvoiceImage source={{uri: invoice.image_uri}} />
             <InvoiceInfo>
               <InvoiceCompany>{invoice.name}</InvoiceCompany>
-              <InvoiceValueText>{invoice.value}</InvoiceValueText>
               <InvoiceDateText>{invoice.date}</InvoiceDateText>
+              <InvoiceValueText>
+                {formatValue(invoice.value, 2)}
+              </InvoiceValueText>
             </InvoiceInfo>
             <IconContainer>
               <Icon name="chevron-right" size={30} color="#46494c" />

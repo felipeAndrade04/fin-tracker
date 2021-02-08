@@ -1,0 +1,68 @@
+{
+  "invoices": [
+    {
+      "id": 1,
+      "name": "Super mercado econômico",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 10999,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 2,
+      "name": "Assinatura Netflix",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 3290,
+      "date": "16/12/2020"
+    },
+    {
+      "id": 3,
+      "name": "Perfumes",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 16990,
+      "date": "18/12/2020"
+    },
+    {
+      "id": 4,
+      "name": "Internet",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 8000,
+      "date": "04/01/2021"
+    },
+    {
+      "id": 5,
+      "name": "Energia",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 20742,
+      "date": "12/01/2021"
+    },
+    {
+      "id": 6,
+      "name": "Hambúrguer",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 3600,
+      "date": "13/01/2021"
+    },
+    {
+      "id": 7,
+      "name": "Gasolina",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 2000,
+      "date": "15/01/2021"
+    },
+    {
+      "id": 8,
+      "name": "Monitor novo",
+      "image_uri":
+        "https://th.bing.com/th/id/OIP.QWE-kBKexUBOVtd4ZYjozwHaJQ?pid=Api&rs=1",
+      "value": 104999,
+      "date": "20/01/2021"
+    }
+  ]
+}
